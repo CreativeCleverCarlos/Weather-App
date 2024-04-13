@@ -2,13 +2,27 @@
 //
 
 //this works as intended. It makes a request to the the site weatherAPI and now collects data from specifically London Ontario.
-
 async function getWeather() {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=831cf2b10ac1459e9a3154716241204&q=${inputHolder[0]}&aqi=no`) ;
     const weatherData = await response.json();
 
+    return weatherData
 
   }
+
+
+  //how im going to manipulate and edit the data that is received from the api
+  document.addEventListener("DOMContentLoaded", async() => {
+    let weatherData = [];
+
+    try {
+        weatherData = await getWeather();
+     } catch (e){
+        console.log("error")
+        console.log(e)
+     }
+     console.log(weatherData)
+  })
 
   
   let inputHolder = []
